@@ -14,8 +14,8 @@ const res = await fetch(endpoint, {
     method: "GET",
     headers: {
         "Content-Type": "application/json",
-        "Authorization": `Basic ${btoa(`${api_token}:api_token`)}`
-    }
+        "Authorization": `Basic ${btoa(`${api_token}:api_token`)}`,
+    },
 });
 
 const data = await res.json();
@@ -26,13 +26,13 @@ type Entry = {
     "project_name": string,
     "description": string,
     "duration": number,
-}
+};
 const work_entries = data.filter((entry: Entry) => entry.client_name === "client_name");
 
 // Projectごと、タスクごとに集計する
 type Summary = Record<string, Record<string, number>>;
 
-const summary:Summary = {};
+const summary: Summary = {};
 for (const entry of work_entries) {
     const project = entry.project_name;
     const task = entry.description;
