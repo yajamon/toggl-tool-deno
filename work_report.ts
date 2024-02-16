@@ -49,3 +49,21 @@ for (const entry of work_entries) {
     }
 }
 
+// 集計結果を markdown 書式で表示する
+// Project 「misc.」 だけはあとで表示する
+for (const project in summary) {
+    console.log(`### ${project}`);
+    if (project === "misc.") {
+        continue;
+    }
+    for (const task in summary[project]) {
+        // 小数点以下は2桁まで表示する
+        const duration = summary[project][task] / 3600;
+        console.log(`- ${task}: ${duration.toFixed(2)}h`);
+    }
+    console.log("");
+}
+for (const task in summary["misc."]) {
+    const duration = summary["misc."][task] / 3600;
+    console.log(`- ${task}: ${duration.toFixed(2)}h`);
+}
