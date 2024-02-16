@@ -2,9 +2,11 @@
 //
 // [Time entries | Track Your Way](https://developers.track.toggl.com/docs/api/time_entries)
 //
-const today = (new Date()).toISOString().split("T")[0];
-const start_date = encodeURIComponent(today + "T00:00:00+09:00");
-const end_date = encodeURIComponent(today + "T23:59:59+09:00");
+const d = new Date();
+const today = d.toISOString().split("T")[0];
+const tomorrow = new Date(d.getTime() + 24 * 60 * 60 * 1000).toISOString().split("T")[0];
+const start_date = encodeURIComponent(today + "T06:00:00+09:00");
+const end_date = encodeURIComponent(tomorrow + "T06:00:00+09:00");
 const endpoint = `https://api.track.toggl.com/api/v9/me/time_entries?start_date=${start_date}&end_date=${end_date}&meta=true`;
 
 // ファイルから読み込む
