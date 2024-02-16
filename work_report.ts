@@ -27,7 +27,8 @@ type Entry = {
     "description": string,
     "duration": number,
 };
-const work_entries = data.filter((entry: Entry) => entry.client_name === "client_name");
+const client = "client_name";
+const work_entries = data.filter((entry: Entry) => entry.client_name === client);
 
 // Projectごと、タスクごとに集計する
 type Summary = Record<string, Record<string, number>>;
