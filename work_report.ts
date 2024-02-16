@@ -58,15 +58,17 @@ for (const project in summary) {
     console.log(`### ${project}`);
     for (const task in summary[project]) {
         // 小数点以下は2桁まで表示する
-        const duration = summary[project][task] / 3600;
-        console.log(`- ${task}: ${duration.toFixed(2)}h`);
+        console.log(`- ${task}`);
+        // const duration = summary[project][task] / 3600;
+        // console.log(`- ${task}: ${duration.toFixed(2)}h`);
     }
     console.log("");
 }
 if (summary["misc."]) {
     console.log("### misc.");
     for (const task in summary["misc."]) {
-        const duration = summary["misc."][task] / 3600;
-        console.log(`- ${task}: ${duration.toFixed(2)}h`);
+        console.log(`- ${task}`);
+        // const duration = summary["misc."][task] / 3600;
+        // console.log(`- ${task}: ${duration.toFixed(2)}h`);
     }
 }
