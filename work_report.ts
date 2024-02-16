@@ -14,25 +14,25 @@ const res = await fetch(endpoint, {
     method: "GET",
     headers: {
         "Content-Type": "application/json",
-        "Authorization": `Basic ${btoa(`${api_token}:api_token`)}`
-    }
+        "Authorization": `Basic ${btoa(`${api_token}:api_token`)}`,
+    },
 });
 
 const data = await res.json();
 
 // 業務用のタイムエントリーだけを集計する
 type Entry = {
-    "client_name": string,
-    "project_name": string,
-    "description": string,
-    "duration": number,
-}
+    "client_name": string;
+    "project_name": string;
+    "description": string;
+    "duration": number;
+};
 const work_entries = data.filter((entry: Entry) => entry.client_name === "i-mobile");
 
 // Projectごと、タスクごとに集計する
 type Summary = Record<string, Record<string, number>>;
 
-const summary:Summary = {};
+const summary: Summary = {};
 for (const entry of work_entries) {
     const project = entry.project_name;
     const task = entry.description;
