@@ -3,6 +3,8 @@
 // [Time entries | Track Your Way](https://developers.track.toggl.com/docs/api/time_entries)
 //
 const d = new Date();
+// 1日の区間を6時間ずらす
+d.setTime(d.getTime() - 6 * 60 * 60 * 1000);
 const today = d.toISOString().split("T")[0];
 const tomorrow = new Date(d.getTime() + 24 * 60 * 60 * 1000).toISOString().split("T")[0];
 const start_date = encodeURIComponent(today + "T06:00:00+09:00");
