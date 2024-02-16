@@ -52,10 +52,10 @@ for (const entry of work_entries) {
 // 集計結果を markdown 書式で表示する
 // Project 「misc.」 だけはあとで表示する
 for (const project in summary) {
-    console.log(`### ${project}`);
     if (project === "misc.") {
         continue;
     }
+    console.log(`### ${project}`);
     for (const task in summary[project]) {
         // 小数点以下は2桁まで表示する
         const duration = summary[project][task] / 3600;
