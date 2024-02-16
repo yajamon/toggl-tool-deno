@@ -63,7 +63,10 @@ for (const project in summary) {
     }
     console.log("");
 }
-for (const task in summary["misc."]) {
-    const duration = summary["misc."][task] / 3600;
-    console.log(`- ${task}: ${duration.toFixed(2)}h`);
+if (summary["misc."]) {
+    console.log("### misc.");
+    for (const task in summary["misc."]) {
+        const duration = summary["misc."][task] / 3600;
+        console.log(`- ${task}: ${duration.toFixed(2)}h`);
+    }
 }
