@@ -19,4 +19,33 @@ const res = await fetch(endpoint, {
 });
 
 const data = await res.json();
-console.log(data);
+
+// 業務用のタイムエントリーだけを集計する
+type Entry = {
+    "client_name": string,
+    "project_name": string,
+    "description": string,
+    "duration": number,
+}
+const work_entries = data.filter((entry: Entry) => entry.client_name === "client_name");
+
+// Projectごと、タスクごとに集計する
+type Summary = Record<string, Record<string, number>>;
+
+const summary:Summary = {};
+for (const entry of work_entries) {
+    const project = entry.project_name;
+    const task = entry.description;
+    const duration = entry.duration;
+
+    if (!summary[project]) {
+        summary[project] = {};
+    }
+    if (!summary[project][task]) {
+        summary[project][task] = 0;
+    }
+    if (duration > 0) {
+        summary[project][task] += duration;
+    }
+}
+
