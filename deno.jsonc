@@ -1,5 +1,7 @@
 {
-    "tasks": {},
+    "tasks": {
+        "work_report": "deno run --allow-read --allow-net work_report.ts"
+    },
     "fmt": {
         "options": {
             "indentWidth": 4,
