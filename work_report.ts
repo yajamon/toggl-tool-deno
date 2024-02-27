@@ -61,9 +61,13 @@ for (const project in summary) {
         continue;
     }
     console.log(`### ${project}`);
-    for (const task in summary[project]) {
-        // 小数点以下は2桁まで表示する
+
+    const tasks = Object.keys(summary[project]);
+    tasks.sort();
+    for (const task of tasks) {
         console.log(`- ${task}`);
+
+        // 小数点以下は2桁まで表示する
         // const duration = summary[project][task] / 3600;
         // console.log(`- ${task}: ${duration.toFixed(2)}h`);
     }
@@ -71,7 +75,9 @@ for (const project in summary) {
 }
 if (summary["misc."]) {
     console.log("### misc.");
-    for (const task in summary["misc."]) {
+    const tasks = Object.keys(summary["misc."]);
+    tasks.sort();
+    for (const task of tasks) {
         console.log(`- ${task}`);
         // const duration = summary["misc."][task] / 3600;
         // console.log(`- ${task}: ${duration.toFixed(2)}h`);
