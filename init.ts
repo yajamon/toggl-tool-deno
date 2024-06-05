@@ -4,5 +4,6 @@ const content = `{
 }
 `;
 await Deno.writeTextFile("./config.json", content, {
+    createNew: true,
     mode: 0o600,
 });
