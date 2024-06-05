@@ -1,5 +1,6 @@
 {
     "tasks": {
+        "init": "deno run --allow-write init.ts",
         "work_report": "deno run --allow-read --allow-net work_report.ts"
     },
     "fmt": {

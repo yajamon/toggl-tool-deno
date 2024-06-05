@@ -2,6 +2,8 @@
 //
 // [Time entries | Track Your Way](https://developers.track.toggl.com/docs/api/time_entries)
 //
+import config from "./config.json" with { type: "json" };
+
 const d = new Date();
 // 1日の区間を6時間ずらす
 d.setTime(d.getTime() - 6 * 60 * 60 * 1000);
@@ -12,7 +14,7 @@ const end_date = encodeURIComponent(tomorrow + "T06:00:00+09:00");
 const endpoint = `https://api.track.toggl.com/api/v9/me/time_entries?start_date=${start_date}&end_date=${end_date}&meta=true`;
 
 // ファイルから読み込む
-const api_token = (await Deno.readTextFile("api_token.txt")).trim();
+const api_token = config.api_token;
 
 const res = await fetch(endpoint, {
     method: "GET",
@@ -31,7 +33,7 @@ type Entry = {
     "description": string,
     "duration": number,
 };
-const client = "client_name";
+const client = config.client;
 const work_entries = data.filter((entry: Entry) => entry.client_name === client);
 
 // Projectごと、タスクごとに集計する
