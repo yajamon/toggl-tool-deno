@@ -1,7 +1,9 @@
+import config from "./config.json" with { type: "json" };
+
 const endpoint = "https://api.track.toggl.com/api/v9/me";
 
 // ファイルから読み込む
-const api_token = (await Deno.readTextFile("api_token.txt")).trim();
+const api_token = config.api_token;
 
 const res = await fetch(endpoint, {
     method: "GET",
