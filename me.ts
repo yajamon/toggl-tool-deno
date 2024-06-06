@@ -9,8 +9,8 @@ const res = await fetch(endpoint, {
     method: "GET",
     headers: {
         "Content-Type": "application/json",
-        "Authorization": `Basic ${btoa(`${api_token}:api_token`)}`
-    }
+        "Authorization": `Basic ${btoa(`${api_token}:api_token`)}`,
+    },
 });
 
 const data = await res.json();

@@ -28,10 +28,10 @@ const data = await res.json();
 
 // 業務用のタイムエントリーだけを集計する
 type Entry = {
-    "client_name": string,
-    "project_name": string,
-    "description": string,
-    "duration": number,
+    "client_name": string;
+    "project_name": string;
+    "description": string;
+    "duration": number;
 };
 const client = config.client;
 const work_entries = data.filter((entry: Entry) => entry.client_name === client);
