@@ -4,11 +4,23 @@
 //
 import config from "./config.json" with { type: "json" };
 
-const d = new Date();
+const getYmd = (date: Date): string => {
+    const y = date.getFullYear();
+    const m = date.getMonth() + 1;
+    const d = date.getDate();
+    return `${y}-${m < 10 ? `0${m}` : m}-${d}`;
+};
+
+const d = (function () {
+    if (Deno.args.length === 0) {
+        return new Date();
+    }
+    return new Date(`${Deno.args[0]}T12:00:00+09:00`);
+})();
 // 1日の区間を6時間ずらす
 d.setTime(d.getTime() - 6 * 60 * 60 * 1000);
-const today = d.toISOString().split("T")[0];
-const tomorrow = new Date(d.getTime() + 24 * 60 * 60 * 1000).toISOString().split("T")[0];
+const today = getYmd(d);
+const tomorrow = getYmd(new Date(d.getTime() + 24 * 60 * 60 * 1000));
 const start_date = encodeURIComponent(today + "T06:00:00+09:00");
 const end_date = encodeURIComponent(tomorrow + "T06:00:00+09:00");
 const endpoint = `https://api.track.toggl.com/api/v9/me/time_entries?start_date=${start_date}&end_date=${end_date}&meta=true`;
