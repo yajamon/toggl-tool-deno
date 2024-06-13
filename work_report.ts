@@ -11,7 +11,12 @@ const getYmd = (date: Date): string => {
     return `${y}-${m < 10 ? `0${m}` : m}-${d}`;
 };
 
-const d = new Date();
+const d = (function () {
+    if (Deno.args.length === 0) {
+        return new Date();
+    }
+    return new Date(`${Deno.args[0]}T12:00:00+09:00`);
+})();
 // 1日の区間を6時間ずらす
 d.setTime(d.getTime() - 6 * 60 * 60 * 1000);
 const today = getYmd(d);
